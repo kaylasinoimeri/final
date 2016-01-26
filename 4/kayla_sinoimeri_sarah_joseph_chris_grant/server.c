@@ -14,6 +14,14 @@ int main() {
 
   int socket_id, socket_client;
   
+  struct sigaction action = {
+    .sa_hander = sighandler, 
+    .sa_flags = 0;
+  };
+  sigemptyset(&action.sa_mask);
+  sigaction(SIGINT, &action, NULL);
+  
+  }
   //create the socket
   socket_id = socket( AF_INET, SOCK_STREAM, 0 );
   
